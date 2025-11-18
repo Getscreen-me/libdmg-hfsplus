@@ -83,3 +83,21 @@ Or to run tests manually:
 * Configure in 'build': `cmake -B build`
 * Install cram: `pipx install cram`
 * Run tests: `cram test/*.t`
+
+
+Static builds
+--------------
+
+Build openssl from source:
+
+    wget https://www.openssl.org/source/openssl-1.1.1u.tar.gz
+    tar xvf openssl-1.1.1u.tar.gz
+    cd openssl-1.1.1u
+
+    ./config no-shared no-dso no-tests
+    make
+    make install DESTDIR=../openssl-static
+
+Run build:
+
+    cmake -DOPENSSL_ROOT_DIR=/path/to/openssl-static -DOPENSSL_USE_STATIC_LIBS=TRUE ..

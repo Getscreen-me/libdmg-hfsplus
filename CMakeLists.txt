@@ -10,14 +10,15 @@ ELSE(WIN32)
 	SET(BUILD_STATIC OFF CACHE BOOL "Force compilation with static libraries")
 ENDIF(WIN32)
 
-IF(BUILD_STATIC)
-	SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-ENDIF(BUILD_STATIC)
+set(BUILD_SHARED_LIBS OFF)
+set(CMAKE_FIND_LIBRARY_SUFFIXES .a)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -static")
+set(CMAKE_LINKER_FLAGS "${CMAKE_LINKER_FLAGS} -static")
 
 include_directories (${PROJECT_SOURCE_DIR}/includes)
 
 add_subdirectory (common)
 add_subdirectory (dmg)
-add_subdirectory (hdutil)
+# add_subdirectory (hdutil)
 add_subdirectory (hfs)
 
